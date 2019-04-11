@@ -2,28 +2,28 @@
 #define MAX 100
 
 struct student{
-    char name[24];
-    int rollno;
-    int marks[4];
-    int totalmarks;
-}s[MAX];
-
+        char name[24];
+        int rollno;
+        int marks[4];
+        int totalmarks;
+};
 
 void bubblesort(struct student s[], int n) {
     int i, j, k;
     struct student temp; 
     for (i = 0; i < n-1; i++) {     
         for (j = 0; j < n-i-1; j++) {
-            if (s[j].totalmarks > s[j+1].totalmarks) {
+            if (s[j].totalmarks < s[j+1].totalmarks) {
                 temp = s[j];
                 s[j] = s[j+1];
-                s[j+1] = temp;
+                s[j+1] = temp;                
             }
         }
     }
 }
 
 void main() {
+    struct student s[MAX];
     int n, i, j, rank = 1;
     printf("Enter number of students: ");
     scanf("%d", &n);
@@ -37,14 +37,15 @@ void main() {
         }
     }
     printf("\n");
-    printf("Rank\tName\tTotal Marks\n");
-    printf("%d\t%s\t%d\n", rank, s[0].name, s[0].totalmarks);
+    bubblesort(s, n);
+    printf("Rank\tRoll No\tName\tTotal Marks\n");
+    printf("%d\t%d\t%s\t%d\n", rank, s[0].rollno ,s[0].name, s[0].totalmarks);
     for(i = 1; i < n; i++) {
-        if(s[i].totalmarks > 160) {
+        if((s[i].marks[0] >= 40) && (s[i].marks[1] >= 40) && (s[i].marks[2] >= 40) && (s[i].marks[3] >= 40)) {
             if(s[i].totalmarks == s[i-1].totalmarks) {
-                printf("%d\t%s\t%d\n", rank, s[i].name, s[i].totalmarks);
+                printf("%d\t%d\t%s\t%d\n", rank, s[i].rollno, s[i].name, s[i].totalmarks);
             } else {
-                printf("%d\t%s\t%d\n", ++rank, s[i].name, s[i].totalmarks);
+                printf("%d\t%d\t%s\t%d\n", ++rank, s[i].rollno, s[i].name, s[i].totalmarks);
             }
         }
     }
