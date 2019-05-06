@@ -1,4 +1,4 @@
-// THIS PROGRAM IS NOT COMPLETE. REVERSING OF THE STRING IS NOT ADDED
+// THIS PROGRAM IS NOT COMPLETE. PART 3 NOT ADDED.
 #include<stdio.h>
 #include<string.h>
 int isPalindrome(char str[]) 
