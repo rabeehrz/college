@@ -31,7 +31,7 @@ void lifo() {
 }
 
 void fifo() {
-        node * head = NULL;
+        node * rear = NULL;
 	node * front = NULL;
         node *temp;
         int i, n;
@@ -41,24 +41,20 @@ void fifo() {
                 temp = (node *) malloc(sizeof(node));
                 printf("Enter number %d: ", i+1);
                 scanf("%d", &(temp->data));
-                if(head == NULL) {
+                if(front == NULL) {
                         temp->next = NULL;
-                        head = temp;
-			front = temp;
+                        front = temp;
+			rear = temp;
                 } else {
-                        temp->next = head;
-                        head = temp;
+                        rear->next = temp;
+                        rear = temp;
                 }
         }
-	temp = head;
+	rear->next = NULL;
+	temp = front;
         while(temp != NULL) {
-		if(temp->next == front) {
-			printf("%d", front->data);
-			front = temp;
-			temp = head;
-		} else {
-			temp = temp->next;
-		}
+		printf("%d\n", temp->data);
+                temp = temp->next;
         }
 }
 
@@ -69,7 +65,11 @@ void main() {
 	switch(option) {
 		case 1:
 			lifo();
+			break;
 		case 2:
 			fifo();
+			break;
+		default:
+			printf("Wrong Option.");
 	}
 }
