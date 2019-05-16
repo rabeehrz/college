@@ -18,15 +18,14 @@ void lifo() {
 		scanf("%d", &(temp->data));
 		if(head == NULL) {
 			temp->next = NULL;
-			head = temp;
 		} else {
 			temp->next = head;
-			head = temp;
 		}
+		head = temp;
 	}
-	while(head != NULL) {
-		printf("%d\n", head->data);
-		head = head->next;
+	while(temp != NULL) {
+		printf("%d\n", temp->data);
+		temp = temp->next;
 	}
 }
 
@@ -44,11 +43,10 @@ void fifo() {
                 if(front == NULL) {
                         temp->next = NULL;
                         front = temp;
-			rear = temp;
                 } else {
                         rear->next = temp;
-                        rear = temp;
                 }
+		rear = temp;
         }
 	rear->next = NULL;
 	temp = front;

@@ -10,7 +10,9 @@ void main() {
         frequency[ch]++;
     fclose(fp);
     for(i = 0; i < MAX_SIZE; i++) {
-        if(frequency[i] > 0)
-            printf("%c: %d\n", i, frequency[i]);
+        if(frequency[i] > 0) {
+            if(i != '\0')
+                printf("%c: %d\n", i, frequency[i]);
+        }
     }
 }
