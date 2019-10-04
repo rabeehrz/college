@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<ctype.h> 
+#include<ctype.h>
 #include<string.h>
 
 #define SIZE 100
@@ -10,7 +10,6 @@
 char stack[SIZE];
 int top = -1;
 
-/* define push operation */
 
 void push(char item)
 {
@@ -25,7 +24,6 @@ void push(char item)
 	}
 }
 
-/* define pop operation */
 char pop()
 {
 	char item ;
@@ -44,9 +42,6 @@ char pop()
 	}
 }
 
-/* define function that is used to determine whether any symbol is operator or not
-(that is symbol is operand)
-* this fucntion returns 1 if symbol is opreator else return 0 */
 
 int is_operator(char symbol)
 {
@@ -60,14 +55,10 @@ int is_operator(char symbol)
 	}
 }
 
-/* define fucntion that is used to assign precendence to operator.
-* Here ^ denotes exponent operator.
-* In this fucntion we assume that higher integer value
-* means higher precendence */
 
 int precedence(char symbol)
 {
-	if(symbol == '^')/* exponent operator, highest precedence*/
+	if(symbol == '^')
 	{
 		return(3);
 	}
@@ -75,7 +66,7 @@ int precedence(char symbol)
 	{
 		return(2);
 	}
-	else if(symbol == '+' || symbol == '-')          /* lowest precedence */
+	else if(symbol == '+' || symbol == '-')
 	{
 		return(1);
 	}
@@ -86,7 +77,7 @@ int precedence(char symbol)
 }
 
 void InfixToPostfix(char infix_exp[], char postfix_exp[])
-{ 
+{
 	int i, j;
 	char item;
 	char x;
@@ -106,7 +97,7 @@ void InfixToPostfix(char infix_exp[], char postfix_exp[])
 		}
 		else if( isdigit(item) || isalpha(item))
 		{
-			postfix_exp[j] = item;     
+			postfix_exp[j] = item;
 			j++;
 		}
 		else if(is_operator(item) == 1)
@@ -124,7 +115,7 @@ void InfixToPostfix(char infix_exp[], char postfix_exp[])
 		}
 		else if(item == ')')
 		{
-			x = pop();      
+			x = pop();
 			while(x != '(')
 			{
 				postfix_exp[j] = x;
@@ -133,7 +124,7 @@ void InfixToPostfix(char infix_exp[], char postfix_exp[])
 			}
 		}
 		else
-		{ 
+		{
 			printf("\nInvalid infix Expression.\n");
 			getchar();
 			exit(1);
@@ -142,7 +133,7 @@ void InfixToPostfix(char infix_exp[], char postfix_exp[])
 
 
 		item = infix_exp[i];
-	} 
+	}
 	if(top>0)
 	{
 		printf("\nInvalid infix Expression.\n");
