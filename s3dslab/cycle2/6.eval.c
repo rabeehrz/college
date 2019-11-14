@@ -89,6 +89,43 @@ int evaluatePostfix(char* exp)
 	return pop(stack); 
 } 
 
+int evaluatePrefix(char* exp) 
+{ 
+	// Create a stack of capacity equal to expression size 
+	struct Stack* stack = createStack(strlen(exp)); 
+	int i = strlen(exp) - 1; 
+
+	
+	if (!stack) return -1; 
+
+	while (exp[i]) {
+		if(exp[i] == ' ') {
+			i++;
+			continue;
+		}
+
+		if (isdigit(exp[i])) {
+			push(stack, atoi(exp + i));
+			while(exp[i] != ' ') {
+				i++;
+			}
+			continue;
+		} else { 
+			int val1 = pop(stack); 
+			int val2 = pop(stack); 
+			switch (exp[i]) 
+			{ 
+			case '+': push(stack, val2 + val1); break; 
+			case '-': push(stack, val2 - val1); break; 
+			case '*': push(stack, val2 * val1); break; 
+			case '/': push(stack, val2/val1); break; 
+			} 
+			i++;
+		} 
+	} 
+	return pop(stack); 
+} 
+
 int main() 
 { 
 	char exp[1000];
