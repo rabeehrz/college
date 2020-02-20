@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+if [[ $# -ne 2 ]]; then
+	echo "Syntax: ./addnames ulist username"
+	exit
+fi
+if [[ ! ( -a $1 ) ]]; then
+	echo "Error: File $1 doesn't exist"
+	exit
+fi
+
+NO=$( grep -c -e $2 $1 )
+
+if [[ $NO -eq 0 ]]; then
+	echo $2 >> $1
+	echo "Username is added. Current list is:"
+	cat $1
+	exit
+else
+	echo "Error: Username already exists "
+	exit
+fi
